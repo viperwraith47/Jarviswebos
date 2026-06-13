@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JARVIS OS — Stark Industries</title>
+<link rel="stylesheet" href="styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ─────────── BOOT SEQUENCE ─────────── -->
+  <div id="boot">
+    <div class="boot-inner">
+      <svg class="boot-logo" viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="#7cf6ff" stop-opacity="1"/>
+            <stop offset="60%" stop-color="#1aa3c9" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#001828" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#3fd9ff" stroke-width="1" opacity=".6"/>
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#3fd9ff" stroke-width="0.6" opacity=".4" stroke-dasharray="4 6"/>
+        <circle cx="100" cy="100" r="55" fill="url(#rg)"/>
+        <g stroke="#9ff3ff" stroke-width="1.4" fill="none">
+          <path d="M100 50 L120 90 L100 100 L80 90 Z"/>
+          <path d="M100 150 L120 110 L100 100 L80 110 Z"/>
+          <path d="M50 100 L90 80 L100 100 L90 120 Z"/>
+          <path d="M150 100 L110 80 L100 100 L110 120 Z"/>
+        </g>
+        <circle cx="100" cy="100" r="10" fill="#d4faff"/>
+      </svg>
+      <div class="boot-title">STARK INDUSTRIES</div>
+      <div class="boot-sub">J.A.R.V.I.S. · OPERATING SYSTEM v9.3</div>
+      <div class="boot-log" id="bootLog"></div>
+      <div class="boot-bar"><div id="bootBarFill"></div></div>
+    </div>
+    <div class="scanlines"></div>
+  </div>
+
+  <!-- ─────────── DESKTOP ─────────── -->
+  <div id="desktop" class="hidden">
+
+    <!-- background grid + reticles -->
+    <div class="bg-grid"></div>
+    <div class="bg-vignette"></div>
+
+    <!-- corner HUD: scanning concentric (bottom-left only) -->
+    <svg class="hud-rings" viewBox="0 0 220 220">
+      <g fill="none" stroke="#3fd9ff" opacity=".55">
+        <circle cx="110" cy="110" r="100" stroke-width="0.6" stroke-dasharray="2 4"/>
+        <circle cx="110" cy="110" r="80"  stroke-width="0.6"/>
+        <circle cx="110" cy="110" r="60"  stroke-width="0.6" stroke-dasharray="6 3"/>
+        <circle cx="110" cy="110" r="40"  stroke-width="0.6"/>
+      </g>
+      <g class="hud-spin" style="transform-origin:110px 110px">
+        <path d="M110 10 L114 25 L106 25 Z" fill="#7cf6ff"/>
+      </g>
+      <g class="hud-spin-rev" style="transform-origin:110px 110px">
+        <path d="M10 110 L25 106 L25 114 Z" fill="#7cf6ff"/>
+      </g>
+    </svg>
+
+    <!-- TOP STATUS BAR -->
+    <div id="topbar">
+      <div class="tb-group tb-left">
+        <span class="tb-logo">◆ J.A.R.V.I.S.</span>
+        <span class="tb-sep"></span>
+        <span class="tb-stat">USER · <b id="tbUser">—</b></span>
+      </div>
+
+      <div class="tb-group tb-center-group">
+        <span class="tb-stat">CPU <b id="tbCpu">--</b>%</span>
+        <span class="tb-pip"></span>
+        <span class="tb-stat">MEM <b id="tbMem">--</b>%</span>
+        <span class="tb-pip"></span>
+        <span class="tb-stat">⛭ <b id="tbWeather">22°C CLEAR</b></span>
+        <span class="tb-pip"></span>
+        <span class="tb-stat">⏻ <b id="tbBat">100%</b></span>
+      </div>
+
+      <div class="tb-banner" id="tbBanner">ALL SYSTEMS NOMINAL</div>
+
+      <div class="tb-group tb-right">
+        <span class="tb-stat secure">⟁ SECURE · STARK-NET</span>
+        <span class="tb-sep"></span>
+        <span class="tb-stat" id="tbDate">—</span>
+        <span class="tb-stat tb-time" id="tbTime">--:--:--</span>
+      </div>
+    </div>
+
+    <!-- WINDOWS LAYER -->
+    <div id="windows"></div>
+
+    <!-- DESKTOP ICONS -->
+    <div id="dicons"></div>
+
+    <!-- ─── UNIFIED RIGHT RAIL ─── -->
+    <aside id="rightRail">
+
+      <!-- Arc Reactor module -->
+      <section class="rr-mod rr-arc">
+        <header class="rr-hd"><span>ARC REACTOR</span><span class="rr-dot"></span></header>
+        <div class="rr-arc-vis">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <radialGradient id="arcGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#caf6ff" stop-opacity="1"/>
+                <stop offset="50%" stop-color="#3fd9ff" stop-opacity=".7"/>
+                <stop offset="100%" stop-color="#002a3a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="92" fill="none" stroke="#3fd9ff" stroke-width="0.7" opacity=".35"/>
+            <circle cx="100" cy="100" r="78" fill="none" stroke="#3fd9ff" stroke-width="0.5" stroke-dasharray="3 5" opacity=".5"/>
+            <circle id="arcRing" cx="100" cy="100" r="62" fill="none"
+                    stroke="#7cf6ff" stroke-width="3"
+                    stroke-dasharray="389" stroke-dashoffset="20"
+                    transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="42" fill="url(#arcGrad)"/>
+            <g stroke="#caf6ff" stroke-width="1.2" fill="none">
+              <path d="M100 70 L110 95 L100 100 L90 95 Z"/>
+              <path d="M100 130 L110 105 L100 100 L90 105 Z"/>
+              <path d="M70 100 L95 90 L100 100 L95 110 Z"/>
+              <path d="M130 100 L105 90 L100 100 L105 110 Z"/>
+            </g>
+            <circle cx="100" cy="100" r="6" fill="#fff"/>
+          </svg>
+          <div class="rr-arc-pct"><b id="arcPct">98.4</b><span>%</span></div>
+        </div>
+        <div class="rr-row"><span>SUIT POWER</span><b id="suitPct">92.1%</b></div>
+        <div class="rr-tiny">PALLADIUM-FREE · VIBRANIUM CORE</div>
+      </section>
+
+      <!-- Telemetry module -->
+      <section class="rr-mod">
+        <header class="rr-hd"><span>TELEMETRY</span><span class="rr-dot"></span></header>
+        <div class="rr-row"><span>THRUSTERS</span><b id="rtThr">—</b></div>
+        <div class="rr-bar"><div id="rtThrBar"></div></div>
+        <div class="rr-row"><span>REPULSORS</span><b id="rtRep">—</b></div>
+        <div class="rr-bar"><div id="rtRepBar"></div></div>
+        <div class="rr-row"><span>SHIELDING</span><b id="rtShd">—</b></div>
+        <div class="rr-bar"><div id="rtShdBar"></div></div>
+        <div class="rr-row"><span>COMMS</span><b id="rtCom">—</b></div>
+        <div class="rr-bar"><div id="rtComBar"></div></div>
+      </section>
+
+      <!-- Env module -->
+      <section class="rr-mod">
+        <header class="rr-hd"><span>ENVIRONMENT</span><span class="rr-dot"></span></header>
+        <div class="rr-row"><span>ALTITUDE</span><b id="rtAlt">0 FT</b></div>
+        <div class="rr-row"><span>TEMP</span><b id="rtTmp">—°C</b></div>
+        <div class="rr-row"><span>LINK</span><b class="rr-ok">STARK-NET ✓</b></div>
+      </section>
+    </aside>
+
+    <!-- DOCK -->
+    <div id="dock"></div>
+
+  </div>
+
+  <div class="scanlines global"></div>
+
+  <script src="os.js"></script>
+  <script src="apps.js"></script>
+</body>
+</html>
