@@ -1,252 +1,96 @@
+# JARVIS-OS
 
-# 🚀 JARVIS-OS
+A browser-based webOS in the style of Tony Stark's workshop computer from the
+Iron Man films. Built as a guided remix of the
+[Hack Club webOS jam](https://jams.hackclub.com/batch/webOS), but reskinned end-to-end
+with a cinematic HUD aesthetic, an Express backend, and several apps the original
+guide didn't cover.
 
-> A futuristic Iron Man-inspired web operating system featuring a J.A.R.V.I.S. assistant, desktop environment, built-in applications, and a Stark Industries-style interface.
-
-![JARVIS-OS Banner](https://img.shields.io/badge/JARVIS-OS-blue?style=for-the-badge)
-![Node.js](https://img.shields.io/badge/Node.js-18+-green?style=for-the-badge)
-![Express](https://img.shields.io/badge/Express-4.x-black?style=for-the-badge)
-
----
-
-## ✨ Overview
-
-JARVIS-OS is a browser-based operating system inspired by Tony Stark's AI ecosystem. It recreates a futuristic desktop experience complete with interactive applications, system settings, file management, weather forecasting, music playback, world clocks, note-taking, and a conversational J.A.R.V.I.S. assistant.
-
-The project combines a sleek HUD-inspired interface with modern web technologies to deliver an immersive Stark Industries experience directly in the browser.
-
----
-
-## 🎯 Features
-
-### 🤖 J.A.R.V.I.S. Assistant
-- Conversational AI terminal interface
-- Personalized greetings
-- Real-time server communication
-- Animated typing responses
-- User-aware interactions
-
-### 📁 File Explorer
-- Folder navigation
-- File browsing
-- File previews
-- Simulated Stark Industries file system
-
-### 📝 Notes
-- Create, edit, and delete notes
-- Persistent server-backed storage
-- Automatic timestamps
-- Simple productivity workflow
-
-### 🧮 Calculator
-- Basic arithmetic operations
-- Percentage calculations
-- Positive/negative switching
-- Responsive UI
-
-### 🎵 Music Player
-- Built-in audio synthesizer
-- Playlist support
-- Animated visualizer
-- Playback controls
-
-### ⚙️ Settings Center
-- Wallpaper customization
-- Accent color themes
-- User identity management
-- Visual effects controls
-- System utilities
-
-### 🕒 World Clock
-- Live clock updates
-- Multiple timezone support
-- Global city tracking
-
-### ☁️ Weather Dashboard
-- Multi-city forecasts
-- Animated weather visualizations
-- Forecast panels
-- Dynamic weather conditions
-
----
-
-## 🖥️ Interface Highlights
-
-- Stark Industries-inspired design
-- Futuristic HUD visuals
-- Animated desktop environment
-- Custom themes and wallpapers
-- Interactive widgets
-- Responsive window management
-- Neon cyber-tech aesthetic
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-- HTML5
-- CSS3
-- Vanilla JavaScript
-
-### Backend
-- Node.js
-- Express.js
-- CORS
-
-### Architecture
-- Modular application system
-- REST API communication
-- Browser-based desktop environment
-
----
-
-## 📦 Installation
-
-### Clone the repository
+## Run it
 
 ```bash
-git clone https://github.com/your-username/jarvis-os.git
 cd jarvis-os
-```
-
-### Install dependencies
-
-```bash
 npm install
-```
-
-### Start the server
-
-```bash
 npm start
+# open http://localhost:3000   ← IMPORTANT: open via http, not by double-clicking the file
 ```
 
-Or run in development mode:
+No password — anyone can poke around. You'll be asked to enter a name on first boot;
+JARVIS will then address you by that name everywhere (terminal prompt, chat, status bar).
 
-```bash
-npm run dev
+JARVIS is a rule-based persona — he replies with movie-flavored canned responses
+to keywords like *hello, status, time, weather, music, suit, joke, help, thanks*…
+
+## Troubleshooting "Connection failed"
+
+The most common cause is opening `public/index.html` **directly from your file system**
+(URL starts with `file://`). The browser apps can't reach the backend that way.
+
+Always open the app via the server: <http://localhost:3000>
+
+## What's in the box
+
+**Desktop & shell**
+- Boot-up sequence (Stark Industries logo, JARVIS init log, progress bar)
+- Top status bar — clock, date, CPU/MEM/NET/weather, rotating banner
+- HUD overlays — concentric spinning reticles, scanning grid, corner brackets
+- Live **Arc Reactor power gauge** in the bottom-right corner, fed by the backend
+- Bottom dock + desktop icons in faceted hexagonal HUD frames
+- Frosted-glass windows that **drag, resize, minimize, maximize, close**
+- z-index focus management, active-window glow
+
+**Apps (11)**
+1. **J.A.R.V.I.S.** terminal — chat with a rule-based persona with the movie tone, typed out character-by-character
+2. **Files** — folder navigation backed by the server, click to preview text contents
+3. **Notepad** — full CRUD against the server (`/api/notes`, persisted to JSON on disk)
+4. **Calculator** — full keyboard, history line
+5. **Music** — Web Audio synth that actually plays mini riffs of *Iron Man*, AC/DC, Stark theme — with a spinning disc and a live audio visualizer
+6. **Settings** — tabbed: 12 wallpapers, 8 accent colors, HUD effect toggles, user identity
+7. **Chrono** — local time + 6 world clocks (Malibu, NYC, London, Tokyo, Sokovia, Wakanda)
+8. **Weather** — animated 5-day forecast for Malibu / NYC / London / Tokyo with hand-drawn SVG icons (sun, clouds, rain, thunder, snow, wind)
+9. **Calendar** — month view with prev/next navigation, click-a-day to view events, color-coded mock Stark agenda
+10. **Radar** — equirectangular world map with pulsing mission pins (NYC, Sokovia, Malibu, Wakanda, etc.) + animated radar sweep, click pins for intel
+11. **Hologram** — drag-to-rotate 3D wireframe Mark VII suit with clickable annotation pins
+
+**Backend (`/server/index.js`)**
+- `GET  /api/notes` · `POST /api/notes` · `DELETE /api/notes/:id`
+- `GET  /api/files`
+- `GET  /api/diagnostics` — telemetry that drifts every 1.5 s and feeds the HUD and diagnostics app
+- `POST /api/jarvis` — rule-based persona engine returning movie-flavored replies
+
+## ✨ Bonus feature (beyond the guide)
+
+**Holographic Workshop** — press **Ctrl+H** anywhere, or click the ◈ tile in the dock,
+or hit `LAUNCH` in Settings → Tools. Opens a window with a custom-built 3D-projected
+wireframe Mark VII suit you can:
+
+- **Drag to rotate** in any direction (auto-rotation toggleable)
+- **Click any pin** on the suit (helmet, arc reactor, repulsors, thrusters, shoulders)
+  to read an annotation about that part
+- Use the **legend buttons** below to jump to a part
+- Reset the view with one click
+
+The whole render is hand-rolled SVG 3D — no external library — with depth-sorted
+lines, perspective projection, and glowing repulsor disks. Like Tony spinning a
+suit hologram in his workshop.
+
+A few other things the Hack Club guide doesn't cover:
+- Server-persisted notes (rather than localStorage)
+- Live telemetry feed driving both the corner HUD and a real `<canvas>` chart
+- Web Audio synth music with visualizer (no audio files to ship)
+- Themeable accent + wallpaper at runtime
+- Cinematic boot sequence with typing log
+
+## File layout
 ```
-
----
-
-## 📂 Project Structure
-
-```text
 jarvis-os/
-│
-├── server/
-│   └── index.js
-│
-├── public/
-│   ├── css/
-│   ├── js/
-│   └── assets/
-│
-├── apps.js
 ├── package.json
-├── package-lock.json
-│
-└── README.md
+├── server/
+│   ├── index.js          # Express server + APIs
+│   └── data/             # auto-created on first run
+└── public/
+    ├── index.html        # shell, boot screen, HUD overlays
+    ├── styles.css        # full Stark theme
+    ├── os.js             # window manager, dock, boot, top bar
+    └── apps.js           # all 9 apps
 ```
-
----
-
-## 🚀 Available Applications
-
-| Application | Description |
-|-------------|------------|
-| J.A.R.V.I.S. | Conversational AI terminal |
-| Files | File explorer and viewer |
-| Notes | Persistent note management |
-| Calculator | Desktop calculator |
-| Music | Synth-based music player |
-| Settings | Personalization and system controls |
-| Clock | World clock dashboard |
-| Weather | Forecast and weather visualization |
-
----
-
-## 🎨 Customization
-
-JARVIS-OS includes:
-
-### Wallpapers
-- Stark HUD
-- Workshop
-- Mark VII
-- Arc Reactor
-- Malibu Dusk
-- Jet Stream
-- Hangar Bay
-- Ultron Red
-- Wakanda
-- Deep Space
-- Sunset Coast
-- Matrix
-- Blueprint
-
-### Accent Themes
-- Arc Cyan
-- Stark Gold
-- Hot Rod Red
-- Vibranium
-- JARVIS Mint
-- Workshop Amber
-- Pepper Pink
-- Ice
-
----
-
-## 🔮 Future Enhancements
-
-- Voice-controlled J.A.R.V.I.S.
-- Real AI integration
-- Browser application support
-- System notifications
-- Multi-user profiles
-- Cloud synchronization
-- Advanced file management
-- Mobile-responsive desktop mode
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-2. Create a feature branch
-
-```bash
-git checkout -b feature/amazing-feature
-```
-
-3. Commit changes
-
-```bash
-git commit -m "Add amazing feature"
-```
-
-4. Push to GitHub
-
-```bash
-git push origin feature/amazing-feature
-```
-
-5. Open a Pull Request
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
-
----
-
-## ⚡ Inspiration
-
-Inspired by the legendary J.A.R.V.I.S. AI system from the Iron Man and Marvel universe, reimagined as a fully interactive web operating system.
-
-> "At your service, sir."
-````

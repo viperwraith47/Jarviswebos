@@ -1,0 +1,58 @@
+[
+  {
+    "name": "mark_VII_specs.txt",
+    "type": "file",
+    "size": "4.2KB",
+    "content": "MARK VII ARMOR\n=================\nWeight: 49 kg\nFlight ceiling: 58,000 ft\nMax speed: Mach 8.4\nArc reactor: Palladium-free Vibranium core\nWeapons: Repulsors (mk IV), Unibeam, micro-missiles"
+  },
+  {
+    "name": "arc_reactor.log",
+    "type": "file",
+    "size": "12KB",
+    "content": "[ARC REACTOR LOG]\n--------------------\n07:14:02  Reactor spin-up complete\n07:14:03  Output stable @ 3 GJ/s\n07:14:09  Magnetic containment: 99.97%\n07:15:00  Diagnostic ping OK"
+  },
+  {
+    "name": "workshop/",
+    "type": "folder",
+    "size": "—",
+    "children": [
+      {
+        "name": "dum_e_protocols.txt",
+        "type": "file",
+        "size": "2KB",
+        "content": "DUM-E: Do not point fire extinguisher at me unless I am on fire."
+      },
+      {
+        "name": "butler_routines.js",
+        "type": "file",
+        "size": "6KB",
+        "content": "// JARVIS routine scheduler v3.2\nschedule(\"morning_brief\", \"07:00\");\nschedule(\"workshop_lights\", \"always\");"
+      }
+    ]
+  },
+  {
+    "name": "mission_logs/",
+    "type": "folder",
+    "size": "—",
+    "children": [
+      {
+        "name": "new_york.md",
+        "type": "file",
+        "size": "8KB",
+        "content": "# Battle of New York\nPortal closed. Suit damaged. Sir survived."
+      },
+      {
+        "name": "sokovia.md",
+        "type": "file",
+        "size": "14KB",
+        "content": "# Sokovia\nUltron neutralized. Civilian casualties minimal."
+      }
+    ]
+  },
+  {
+    "name": "stark_industries.png",
+    "type": "file",
+    "size": "1.1MB",
+    "content": "[binary image data]"
+  }
+]
