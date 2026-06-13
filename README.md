@@ -102,7 +102,7 @@ The project combines a sleek HUD-inspired interface with modern web technologies
 ---
 
 ## 📦 Installation
-
+###Down load the .zip file
 ### Clone the repository
 
 ```bash
