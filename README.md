@@ -102,21 +102,29 @@ The project combines a sleek HUD-inspired interface with modern web technologies
 ---
 
 ## 📦 Installation
-###Down load the .zip file
-### Clone the repository
+
+### 1. Download the project
+
+Download the repository as a ZIP file from GitHub and extract it:
+
+```text
+Code → Download ZIP
+```
+
+Or clone the repository:
 
 ```bash
 git clone https://github.com/your-username/jarvis-os.git
 cd jarvis-os
 ```
 
-### Install dependencies
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### Start the server
+### 3. Start the server
 
 ```bash
 npm start
@@ -127,7 +135,6 @@ Or run in development mode:
 ```bash
 npm run dev
 ```
-
 ---
 
 ## 📂 Project Structure
